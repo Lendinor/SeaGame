@@ -519,9 +519,9 @@ makeRectid(66, 143, 10, 10, "lawngreen", 1, "land");
 makeRectid(55, 143, 10, 10, "lawngreen", 1, "land");
 makeRectid(44, 143, 10, 10, "lawngreen", 1, "land");
 
-//var shark1 = makeImage("http://piq.codeus.net/static/media/userpics/piq_151170_400x400.png",110,198,10,10,1)
+var shark1 = makeCircle(137, 412, 5, "gray", 1)
 
-//var shark2 = makeImage("http://piq.codeus.net/static/media/userpics/piq_149569_400x400.png",1,1,1,1,1)
+var shark2 = makeCircle(236, 313, 5, "gray", 1)
 
 var shark3 = makeCircle(335, 214, 5, "gray", 1);
 var onLand;
@@ -603,9 +603,41 @@ function moreConditions() {
 moreConditions();
 
 function sharkz() {
+    var s1x = getX(shark1);
+    var s1y = getY(shark1);
+    var s2x = getX(shark2);
+    var s2y = getY(shark2);    
     var s3x = getX(shark3);
     var s3y = getY(shark3);
 
+        if (s1x > x) {//if right go left{
+        move(shark3, -10, 0);
+    } else if (s1x < x) {//if left go right
+  
+        move(shark1, 10, 0);
+    }
+
+    if (s1y > y) { //if below go up
+        
+        move(shark1, 0, -10);
+    } else if (s1y < y) { //if above go down
+        move(shark1, 0, 10);
+    }
+
+    if (s2x > x) {//if right go left{
+        move(shark1, -10, 0);
+    } else if (s2x < x) {//if left go right
+  
+        move(shark2, 10, 0);
+    }
+
+    if (s2y > y) { //if below go up
+        
+        move(shark2, 0, -10);
+    } else if (s2y < y) { //if above go down
+        move(shark2, 0, 10);
+    }
+        
     if (s3x > x) {//if right go left{
         move(shark3, -10, 0);
     } else if (s3x < x) {//if left go right
@@ -619,6 +651,9 @@ function sharkz() {
     } else if (s3y < y) { //if above go down
         move(shark3, 0, 10);
     }
+    
+    
+    
 
     requestAnimationFrame(sharkz);
 

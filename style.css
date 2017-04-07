@@ -1,15 +1,23 @@
 @import 'https://fonts.googleapis.com/css?family=Chelsea+Market|Josefin+Sans|Open+Sans';
+@font-face {
+    font-family: myFirstFont;
+    src: url(elvish-ring-nfi.regular.ttf);
+}
+
 html {
   background-color: black
 }
 
 svg {
   background-color: skyblue;
+  
 }
 
 h1{
-  color: skyblue
+  color: skyblue;
+  font-family: myFirstFont;
 }
-P{
-  color: skyblue
+p{
+  color: skyblue;
+  font-family: myFirstFont;    
 }
