@@ -335,8 +335,8 @@ makeRectid(33, 66, 10, 12, "black", 1, "wh");
 makeRectid(33, 77, 10, 12, "black", 1, "wh");
 makeRectid(33, 88, 10, 10, "black", 1, "wh");
 
-//makeRectid(121,77,10,10,"green",1,"tw")//b
-//makeRectid(110,77,11,10,"green",1,"tw")//b
+makeRectid(121,77,10,10,"lawngreen",1,"land")//b
+makeRectid(110,77,10,10,"lawngreen",1,"land")//b
 makeRectid(154, 110, 10, 10, "lawngreen", 1, "land"); //border
 makeRectid(154, 99, 10, 10, "lawngreen", 1, "land"); //border
 makeRectid(154, 88, 10, 10, "lawngreen", 1, "land"); //border
@@ -615,47 +615,33 @@ function sharkz() {
         if (s1x > x) {//if right go left{
             move(shark3, -10, 0);
         } else if (s1x < x) {//if left go right
-  
             move(shark1, 10, 0);
         }
-
         if (s1y > y) { //if below go up
-        
             move(shark1, 0, -10);
         } else if (s1y < y) { //if above go down
             move(shark1, 0, 10);
         }
-
         if (s2x > x) {//if right go left{
             move(shark1, -10, 0);
         } else if (s2x < x) {//if left go right
-  
             move(shark2, 10, 0);
         }
-
         if (s2y > y) { //if below go up
-        
             move(shark2, 0, -10);
         } else if (s2y < y) { //if above go down
             move(shark2, 0, 10);
         }
-        
         if (s3x > x) {//if right go left{
             move(shark3, -10, 0);
         } else if (s3x < x) {//if left go right
-  
             move(shark3, 10, 0);
         }
-
         if (s3y > y) { //if below go up
-        
             move(shark3, 0, -10);
         } else if (s3y < y) { //if above go down
             move(shark3, 0, 10);
         }
-    
-    
-    
     }
     requestAnimationFrame(sharkz);
 
@@ -665,8 +651,9 @@ sharkz();
 function collisionz() {
     if (collides(player, sea)) {
         onLand = 0;
-    } else if (collides(player, "land")) {
+    } else if (collides(player, land)) {
         onLand = 1;
     }
+    requestAnimationFrame(collisionz)
 }
 collisionz();
