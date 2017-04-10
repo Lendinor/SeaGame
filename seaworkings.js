@@ -544,31 +544,31 @@ addEventListener('keydown', movePlayer);
 
 function movePlayer(event) {
 
-    if (event.key == "a" && x > 5) {
+    if (event.key === "a" && x > 5) {
         move(player, -11, 0);
         direction = "left";
-    } else if (event.key == "d" && x < 994.5) {
+    } else if (event.key === "d" && x < 994.5) {
         move(player, 11, 0);
         direction = "right";
-    } else if (event.key == "w" && y > 5) {
+    } else if (event.key === "w" && y > 5) {
         move(player, 0, -11);
         direction = "up";
-    } else if (event.key == "s" && y < 473.5) {
+    } else if (event.key === "s" && y < 473.5) {
         move(player, 0, 11);
         direction = "down";
-    } else if (event.key == "i" && bm > 0) {
+    } else if (event.key === "i" && bm > 0) {
         makeRectid(x - 5, y - 16, 10, 10, "brown", 1, "blt");
         bm = bm - 1;
         bp = bp + 1;
-    } else if (event.key == "j" && bm > 0) {
+    } else if (event.key === "j" && bm > 0) {
         makeRectid(x - 16, y - 5, 10, 10, "brown", 1, "blt");
         bm = bm - 1;
         bp = bp + 1;
-    } else if (event.key == "k" && bm > 0) {
+    } else if (event.key === "k" && bm > 0) {
         makeRectid(x - 5, y + 6, 10, 10, "brown", 1, "blt");
         bm = bm - 1;
         bp = bp + 1;
-    } else if (event.key == "l" && bm > 0) {
+    } else if (event.key === "l" && bm > 0) {
         makeRectid(x + 6, y - 5, 10, 10, "brown", 1, "blt");
         bm = bm - 1;
         bp = bp + 1;
@@ -582,11 +582,11 @@ function movePlayer(event) {
 }
 
 function moreConditions() {
-    if (x == 38 && y == 71 && bm < 11) {
+    if (x === 38 && y === 71 && bm < 11) {
         bm = bm + 1;
-    } else if (x == 38 && y == 82 && bm < 11) {
+    } else if (x === 38 && y === 82 && bm < 11) {
         bm = bm + 1;
-    } else if (x == 38 && y == 93 && bm < 11) {
+    } else if (x === 38 && y === 93 && bm < 11) {
         bm = bm + 1;
     }
 
@@ -606,64 +606,67 @@ function sharkz() {
     var s1x = getX(shark1);
     var s1y = getY(shark1);
     var s2x = getX(shark2);
-    var s2y = getY(shark2);    
+    var s2y = getY(shark2);
     var s3x = getX(shark3);
     var s3y = getY(shark3);
-
+    
+    if (onLand === 1) {
+    
         if (s1x > x) {//if right go left{
-        move(shark3, -10, 0);
-    } else if (s1x < x) {//if left go right
+            move(shark3, -10, 0);
+        } else if (s1x < x) {//if left go right
   
-        move(shark1, 10, 0);
-    }
+            move(shark1, 10, 0);
+        }
 
-    if (s1y > y) { //if below go up
+        if (s1y > y) { //if below go up
         
-        move(shark1, 0, -10);
-    } else if (s1y < y) { //if above go down
-        move(shark1, 0, 10);
-    }
+            move(shark1, 0, -10);
+        } else if (s1y < y) { //if above go down
+            move(shark1, 0, 10);
+        }
 
-    if (s2x > x) {//if right go left{
-        move(shark1, -10, 0);
-    } else if (s2x < x) {//if left go right
+        if (s2x > x) {//if right go left{
+            move(shark1, -10, 0);
+        } else if (s2x < x) {//if left go right
   
-        move(shark2, 10, 0);
-    }
+            move(shark2, 10, 0);
+        }
 
-    if (s2y > y) { //if below go up
+        if (s2y > y) { //if below go up
         
-        move(shark2, 0, -10);
-    } else if (s2y < y) { //if above go down
-        move(shark2, 0, 10);
-    }
+            move(shark2, 0, -10);
+        } else if (s2y < y) { //if above go down
+            move(shark2, 0, 10);
+        }
         
-    if (s3x > x) {//if right go left{
-        move(shark3, -10, 0);
-    } else if (s3x < x) {//if left go right
+        if (s3x > x) {//if right go left{
+            move(shark3, -10, 0);
+        } else if (s3x < x) {//if left go right
   
-        move(shark3, 10, 0);
-    }
+            move(shark3, 10, 0);
+        }
 
-    if (s3y > y) { //if below go up
+        if (s3y > y) { //if below go up
         
-        move(shark3, 0, -10);
-    } else if (s3y < y) { //if above go down
-        move(shark3, 0, 10);
-    }
+            move(shark3, 0, -10);
+        } else if (s3y < y) { //if above go down
+            move(shark3, 0, 10);
+        }
     
     
     
-
+    }
     requestAnimationFrame(sharkz);
 
 }
 sharkz();
 
-function collisionz(){
-   if (collides(player, sea)) {
+function collisionz() {
+    if (collides(player, sea)) {
         onLand = 0;
     } else if (collides(player, "land")) {
         onLand = 1;
     }
 }
+collisionz();
