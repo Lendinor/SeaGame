@@ -335,8 +335,8 @@ makeRectid(33, 66, 10, 12, "black", 1, "wh");
 makeRectid(33, 77, 10, 12, "black", 1, "wh");
 makeRectid(33, 88, 10, 10, "black", 1, "wh");
 
-makeRectid(121,77,10,10,"lawngreen",1,"land")//b
-makeRectid(110,77,10,10,"lawngreen",1,"land")//b
+makeRectid(121,77,10,10, "lawngreen",1,"land")//b
+makeRectid(110,77,10,10, "lawngreen",1,"land")//b
 makeRectid(154, 110, 10, 10, "lawngreen", 1, "land"); //border
 makeRectid(154, 99, 10, 10, "lawngreen", 1, "land"); //border
 makeRectid(154, 88, 10, 10, "lawngreen", 1, "land"); //border
@@ -519,15 +519,14 @@ makeRectid(66, 143, 10, 10, "lawngreen", 1, "land");
 makeRectid(55, 143, 10, 10, "lawngreen", 1, "land");
 makeRectid(44, 143, 10, 10, "lawngreen", 1, "land");
 
-var shark1 = makeCircle(137, 412, 5, "gray", 1)
+var shark1 = makeCircle(137, 412, 5, "gray", 1);
 
-var shark2 = makeCircle(236, 313, 5, "gray", 1)
+var shark2 = makeCircle(236, 313, 5, "gray", 1);
 
 var shark3 = makeCircle(335, 214, 5, "gray", 1);
 var onLand;
 var direction;
-var land = document.getElementById("land")
-
+var land = document.getElementById("land");
 var player = makeCircle(82, 82, 5, "blue", 1);
 var bm = 0;
 var bp = 0;
@@ -605,15 +604,11 @@ moreConditions();
 function sharkz() {
     var s1x = getX(shark1);
     var s1y = getY(shark1);
-    var s2x = getX(shark2);
-    var s2y = getY(shark2);
-    var s3x = getX(shark3);
-    var s3y = getY(shark3);
     
     if (onLand === 1) {
-    
-        if (s1x > x) {//if right go left{
-            move(shark3, -10, 0);
+    } else {
+             if (s1x > x) {//if right go left{
+            move(shark1, -10, 0);
         } else if (s1x < x) {//if left go right
             move(shark1, 10, 0);
         }
@@ -622,8 +617,20 @@ function sharkz() {
         } else if (s1y < y) { //if above go down
             move(shark1, 0, 10);
         }
+    }
+    requestAnimationFrame(sharkz);
+
+}
+sharkz();
+
+function shark2z() {
+    var s2x = getX(shark2);
+    var s2y = getY(shark2);
+
+    if (onLand === 1) {
+    } else {
         if (s2x > x) {//if right go left{
-            move(shark1, -10, 0);
+            move(shark2, -10, 0);
         } else if (s2x < x) {//if left go right
             move(shark2, 10, 0);
         }
@@ -632,6 +639,19 @@ function sharkz() {
         } else if (s2y < y) { //if above go down
             move(shark2, 0, 10);
         }
+
+    }
+    requestAnimationFrame(shark2z);
+
+}
+shark2z();
+
+function shark3z() {
+    var s3x = getX(shark3);
+    var s3y = getY(shark3);
+
+    if (onLand === 1) {
+    } else {
         if (s3x > x) {//if right go left{
             move(shark3, -10, 0);
         } else if (s3x < x) {//if left go right
@@ -642,18 +662,26 @@ function sharkz() {
         } else if (s3y < y) { //if above go down
             move(shark3, 0, 10);
         }
+
     }
-    requestAnimationFrame(sharkz);
+    requestAnimationFrame(shark3z);
 
 }
-sharkz();
+shark3z();
 
-function collisionz() {
+function onLandz() {
     if (collides(player, sea)) {
         onLand = 0;
-    } else if (collides(player, land)) {
+    } else if (collides(player, land) || collides(player,blt)) {
         onLand = 1;
     }
-    requestAnimationFrame(collisionz)
+    requestAnimationFrame(onLandz)
 }
-collisionz();
+onLandz();
+
+function sharkAttack() {
+    if (collides(player,shark1) || collides(player,shark2) || collides(player,shark3)){
+    alert("Game over")   
+} 
+    requestAnimationFrame(sharkAttack)
+}
