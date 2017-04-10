@@ -527,6 +527,7 @@ var shark3 = makeCircle(335, 214, 5, "gray", 1);
 var onLand;
 var direction;
 var land = document.getElementById("land");
+var blt = document.getElementById("blt");
 var player = makeCircle(82, 82, 5, "blue", 1);
 var bm = 0;
 var bp = 0;
