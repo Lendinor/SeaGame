@@ -15,8 +15,9 @@ svg {
 
 h1{
   color: skyblue;
-  font-family: myFirstFont;
+  font-family: sans-serif;
 }
 p{
   color: skyblue;
+  font-family: sans-serif;
 }
