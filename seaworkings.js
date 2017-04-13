@@ -638,11 +638,23 @@ function sharkz() {
     var s1y = getY(shark1);
 
     if(onLand === "on"){
-         if(s1x < x){
-            move(shark1,11,0);   
-         }else if(s1x > x){
-            move(shark1, -11, 0)   
-         }
+//         if(s1x < x){
+//            move(shark1,11,0);   
+//         }else if(s1x > x){
+//            move(shark1, -11, 0)   
+//        }
+        var shark1goes = Math.random();
+      
+        if(shark1goes < 0.25){
+            move(shark1,11,0)
+        } else if (shark1goes < 0.5 && shark1goes > 0.25){
+            move(shark1,0,11)
+        } else if(shark1goes < 0.75 && shark1goes > 0.5 ){
+        move(shark1,-11,0)
+        }else if(shark1goes < 1 && shark1goes > 0.75){
+            move(shark1,0,11)
+        }
+        
         } else{
          if(s1x < x){
             move(shark1,11,0);   
