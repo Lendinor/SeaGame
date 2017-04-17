@@ -1,7 +1,6 @@
 var namespace = "http://www.w3.org/2000/svg";
 var ccintersect = "http://www.kevlindev.com/geometry/2D/intersections/intersect_circle_circle.svg"
 var cromtersect = "http://www.kevlindev.com/geometry/2D/intersections/intersect_circle_rect.svg"
-var go = 1
 
 
 function getX(shape) {
@@ -195,9 +194,6 @@ function collides(rect1, rect2) {
     var centerY = getY(rect1) + parseFloat(rect1.getAttribute("height")) / 2;
     return (centerX > x && centerX < x + w && centerY > y && centerY < y + h);
 }
-
-function g() {
-    if(go > 0){
 
 var sea = makeRect(0, 0, 1001.5, 527.5, "skyblue", 1);
 makeLine(0, 10.5, 1001.5, 10.5, "gray", 1, 0.75);
@@ -530,6 +526,9 @@ var shark1 = makeCircle(137, 412, 5, "gray", 1);
 var shark2 = makeCircle(236, 313, 5, "gray", 1);
 
 var shark3 = makeCircle(335, 214, 5, "gray", 1);
+
+var fishy1 = makeImage("http://piq.codeus.net/static/media/userpics/piq_164382_400x400.png",583,110,10,10,1);
+//var fishy2 = makeRect(583,110,10,10,"gold",1)
 var onLand = "on";
 var direction;
 var land = document.getElementById("land");
@@ -593,17 +592,9 @@ function movePlayer(event) {
 
 }
 var blt = document.getElementById("blt");
-
-function moreConditions() {
-    if (x === 38 && y === 71 && bm < 11) {
-        bm = bm + 1;
-    } else if (x === 38 && y === 82 && bm < 11) {
-        bm = bm + 1;
-    } else if (x === 38 && y === 93 && bm < 11) {
-        bm = bm + 1;
-    }
-
-    
+//var mP = setInterval(movePlayer, 750);
+        
+function moreConditions() {    
     xscore = x;
     yscore = y;
 
@@ -616,22 +607,42 @@ function moreConditions() {
 }
 moreConditions();
 
-    myVar = setInterval(function(){ timez = timez -1; }, 1000)
+function moreConditions2() {
+    if (x === 38 && y === 71 && bm < 11) {
+        bm = bm + 1;
+    } else if (x === 38 && y === 82 && bm < 11) {
+        bm = bm + 1;
+    } else if (x === 38 && y === 93 && bm < 11) {
+        bm = bm + 1;
+    } else if(x === 588 && y === 115 && hungerz <= 50){
+        hungerz = hungerz + 50;   
+    } else if(x === 995 && y === 456 && timez != 0){
+        alert("You win");
+        document.location.reload();
+    }
+}
+var mC2 = setInterval(moreConditions2, 750);
+        
+        
+    myVar = setInterval(function(){ timez = timez - 1; }, 1000)
 
     if(timez == 0){
-     alert("You win!")
      clearInterval(myVar);
+     alert("You win!");
+     document.location.reload();
     }
 
-    hungerclock = setInterval(function(){ hungerz = hungerz -1; }, 1000)
-
-    if(hungerz == 0){
+hungerclock = setInterval(function(){ hungerz = hungerz - 1; }, 750)
+function hungercheck(){
+    
+    if(hungerz === 0){
+     clearInterval(hungerclock);    
      alert("You lose!")
-     go = 0;
-     clearInterval(hungerclock);
+     document.location.reload();
     }
-
-
+requestAnimationFrame(hungercheck)
+}
+hungercheck();
 
 function sharkz() {
     var s1x = getX(shark1);
@@ -643,23 +654,23 @@ function sharkz() {
 //         }else if(s1x > x){
 //            move(shark1, -11, 0)   
 //        }
-        var shark1goes = Math.random();
-      
-        if(shark1goes < 0.25){
-            move(shark1,11,0)
-        } else if (shark1goes < 0.5 && shark1goes > 0.25){
-            move(shark1,0,11)
-        } else if(shark1goes < 0.75 && shark1goes > 0.5 ){
-        move(shark1,-11,0)
-        }else if(shark1goes < 1 && shark1goes > 0.75){
-            move(shark1,0,11)
+        var shark1goes = Math.random() * 100;
+       // console.log(shark1goes)
+        if(shark1goes <= 25 && s1x < 994.5){
+            move(shark1,11,0);
+        } else if (shark1goes <= 50 && shark1goes >= 25 && s1y < 451.5){
+            move(shark1,0,11);
+        } else if(shark1goes <= 75 && shark1goes >= 50 && s1x > 5){
+            move(shark1,-11,0);
+        }else if(shark1goes <= 100 && shark1goes >= 75 && s1y > 5){
+            move(shark1,0,11);
         }
         
         } else{
          if(s1x < x){
             move(shark1,11,0);   
          }else if(s1x > x){
-            move(shark1, -11, 0)   
+            move(shark1, -11, 0);
          }
          if(s1y < y){
             move(shark1,0,11);   
@@ -667,20 +678,34 @@ function sharkz() {
              move(shark1,0,-11);   
          }
     }
-        requestAnimationFrame(sharkz);
+        shark1goes = Math.random() * 100;    
+//        requestAnimationFrame(sharkz);
 }
 //sharkz();
-
+var shark1go = setInterval(sharkz, 500); 
 function shark2z() {
     var s2x = getX(shark2);
     var s2y = getY(shark2);
 
         if(onLand === "on"){
-         if(s2x < x){
-            move(shark2,11,0);   
-         }else if(s2x > x){
-            move(shark2, -11, 0)   
-         }
+//         if(s2x < x){
+//            move(shark2,11,0);   
+//         }else if(s2x > x){
+//            move(shark2, -11, 0)   
+//         }
+        var shark2goes = Math.random() * 100;
+       // console.log(shark2goes)
+        if(shark2goes <= 25 && s2x < 994.5){
+            move(shark2,11,0);
+        } else if (shark2goes <= 50 && shark2goes >= 25 && s2y < 451.5){
+            move(shark2,0,11);
+        } else if(shark2goes <= 75 && shark2goes >= 50 && s2x > 5){
+            move(shark2,-11,0);
+        }else if(shark2goes <= 100 && shark2goes >= 75 && s2y > 5){
+            move(shark2,0,11);
+        }
+        
+
         } else{
          if(s2x < x){
             move(shark2,11,0);   
@@ -694,21 +719,34 @@ function shark2z() {
          }
     }
     
-    requestAnimationFrame(shark2z);
+//    requestAnimationFrame(shark2z);
 
 }
 //shark2z();
-
+var shark2go = setInterval(shark2z, 500); 
 function shark3z() {
     var s3x = getX(shark3);
     var s3y = getY(shark3);
 
         if(onLand === "on"){
-         if(s3x < x){
-            move(shark3,11,0);   
-         }else if(s3x > x){
-            move(shark3, -11, 0)   
-         }
+//         if(s3x < x){
+//            move(shark3,11,0);   
+//         }else if(s3x > x){
+//            move(shark3, -11, 0)   
+//         }
+            var shark3goes = Math.random() * 100;
+            //console.log(shark3goes)
+            if(shark3goes <= 25 && s3x < 994.5){
+                move(shark3,11,0);
+            } else if (shark3goes <= 50 && shark3goes >= 25 && s3y < 451.5){
+            move(shark3,0,11);
+            } else if(shark3goes <= 75 && shark3goes >= 50 && s3x > 5){
+                move(shark3,-11,0);
+            }else if(shark3goes <= 100 && shark3goes >= 75 && s3y > 5){
+                move(shark3,0,11);
+            }
+        
+
         } else{
          if(s3x < x){
             move(shark3,11,0);   
@@ -722,12 +760,12 @@ function shark3z() {
          }
     }
     
-    requestAnimationFrame(shark3z);
+//    requestAnimationFrame(shark3z);
 
 }
 //shark3z();
-
-setTimeout(function(){ sharkz(); shark2z(); shark3z(); }, 10000)
+var shark3go = setInterval(shark3z, 500); 
+//setTimeout(function(){ sharkz(); shark2z(); shark3z(); }, 10000)
 
 function onLandz() {
     if (collides(sea, player)) {
@@ -746,6 +784,4 @@ onLandz();
 //} 
 //    requestAnimationFrame(sharkAttack);
 //}
-}
-}
-g();
+
