@@ -535,7 +535,7 @@ var land = document.getElementById("land");
 
 
 var player = makeCircle(82, 82, 5, "blue", 1);
-var bm = 0;
+var bm = 9000;
 var bp = 0;
 var xscore = 82;
 var yscore = 82;
@@ -608,11 +608,11 @@ function moreConditions() {
 moreConditions();
 
 function moreConditions2() {
-    if (x === 38 && y === 71 && bm < 11) {
+    if (x === 38 && y === 71) {
         bm = bm + 1;
-    } else if (x === 38 && y === 82 && bm < 11) {
+    } else if (x === 38 && y === 82) {
         bm = bm + 1;
-    } else if (x === 38 && y === 93 && bm < 11) {
+    } else if (x === 38 && y === 93) {
         bm = bm + 1;
     } else if(x === 588 && y === 115 && hungerz <= 50){
         hungerz = hungerz + 50;   
@@ -624,7 +624,7 @@ function moreConditions2() {
 var mC2 = setInterval(moreConditions2, 750);
         
         
-    myVar = setInterval(function(){ timez = timez - 1; }, 1000)
+//    myVar = setInterval(function(){ timez = timez - 1; }, 1000)
 
     if(timez == 0){
      clearInterval(myVar);
@@ -632,7 +632,7 @@ var mC2 = setInterval(moreConditions2, 750);
      document.location.reload();
     }
 
-hungerclock = setInterval(function(){ hungerz = hungerz - 1; }, 750)
+//hungerclock = setInterval(function(){ hungerz = hungerz - 1; }, 750)
 function hungercheck(){
     
     if(hungerz === 0){
@@ -659,7 +659,7 @@ function sharkz() {
         if(shark1goes <= 25 && s1x < 994.5){
             move(shark1,11,0);
         } else if (shark1goes <= 50 && shark1goes >= 25 && s1y < 451.5){
-            move(shark1,0,11);
+            move(shark1,0,-11);
         } else if(shark1goes <= 75 && shark1goes >= 50 && s1x > 5){
             move(shark1,-11,0);
         }else if(shark1goes <= 100 && shark1goes >= 75 && s1y > 5){
@@ -698,7 +698,7 @@ function shark2z() {
         if(shark2goes <= 25 && s2x < 994.5){
             move(shark2,11,0);
         } else if (shark2goes <= 50 && shark2goes >= 25 && s2y < 451.5){
-            move(shark2,0,11);
+            move(shark2,0,-11);
         } else if(shark2goes <= 75 && shark2goes >= 50 && s2x > 5){
             move(shark2,-11,0);
         }else if(shark2goes <= 100 && shark2goes >= 75 && s2y > 5){
@@ -739,7 +739,7 @@ function shark3z() {
             if(shark3goes <= 25 && s3x < 994.5){
                 move(shark3,11,0);
             } else if (shark3goes <= 50 && shark3goes >= 25 && s3y < 451.5){
-            move(shark3,0,11);
+            move(shark3,0,-11);
             } else if(shark3goes <= 75 && shark3goes >= 50 && s3x > 5){
                 move(shark3,-11,0);
             }else if(shark3goes <= 100 && shark3goes >= 75 && s3y > 5){
@@ -784,4 +784,3 @@ onLandz();
 //} 
 //    requestAnimationFrame(sharkAttack);
 //}
-
